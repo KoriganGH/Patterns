@@ -44,3 +44,11 @@ def find_most_frequent(arr)
   result = arr.each_with_index.select { |num, index| count[num] == max_count }.map(&:last)
   return result
 end
+
+
+#60)Дан список. Построить массив из элементов, делящихся на свой
+#номер и встречающихся в исходном массиве 1 раз.
+
+def find_elements(array)
+  array.select.with_index { |num, i| num % i == 0 && array.count(num) == 1 if i != 0}
+end
