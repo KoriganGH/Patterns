@@ -12,3 +12,14 @@ def reverse_between_min_max(arr)
 
   return arr
 end
+
+
+#24)Дан целочисленный массив. Необходимо найти два наибольших
+#элемента.
+
+def find_two_max(arr)
+  max1 = arr.max
+  arr.delete(max1)
+  max2 = arr.max
+  return [max1, max2]
+end
