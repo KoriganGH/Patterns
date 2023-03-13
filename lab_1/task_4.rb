@@ -33,3 +33,14 @@ def find_max_odd(arr)
   max_odd = odd_arr.max
   return max_odd
 end
+
+
+#48)Для введенного списка построить список с номерами элемента, который
+#повторяется наибольшее число раз.
+
+def find_most_frequent(arr)
+  count = arr.group_by(&:itself).transform_values(&:count)
+  max_count = count.values.max
+  result = arr.each_with_index.select { |num, index| count[num] == max_count }.map(&:last)
+  return result
+end
