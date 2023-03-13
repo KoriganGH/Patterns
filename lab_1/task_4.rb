@@ -23,3 +23,13 @@ def find_two_max(arr)
   max2 = arr.max
   return [max1, max2]
 end
+
+
+#36)Дан целочисленный массив. Необходимо найти максимальный
+#нечетный элемент.
+
+def find_max_odd(arr)
+  odd_arr = arr.select(&:odd?)
+  max_odd = odd_arr.max
+  return max_odd
+end
