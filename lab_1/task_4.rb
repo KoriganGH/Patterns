@@ -52,3 +52,23 @@ end
 def find_elements(array)
   array.select.with_index { |num, i| num % i == 0 && array.count(num) == 1 if i != 0}
 end
+
+
+method_choice = gets.chomp.to_i
+array = [1,2,3,4,5,6,7,8,9]
+
+case method_choice
+  when 1
+    result = reverse_between_min_max(array)
+  when 2
+    result = find_two_max(array)
+  when 3
+    result = find_max_odd(array)
+  when 4
+    result = find_most_frequent(array)  
+  when 5
+    result = find_elements(array)
+  else
+    puts "Некорректный выбор метода"
+    return
+  end
