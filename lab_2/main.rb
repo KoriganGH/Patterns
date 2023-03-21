@@ -7,5 +7,5 @@ student2.telegram = '@petr'
 student2.email = 'petya123@mail.com'
 student2.git = 'https://github.com/petya123'
 
-puts student1
-puts student2
+student1.to_s
+student2.to_s
