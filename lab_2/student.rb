@@ -84,6 +84,12 @@ class Student
     valid_contacts? && valid_git?
   end
   
+    def set_contacts(contacts)
+    self.phone = contacts[:phone] if contacts.key?(:phone)
+    self.telegram = contacts[:telegram] if contacts.key?(:telegram)
+    self.email = contacts[:email] if contacts.key?(:email)
+  end
+  
   def to_s
     "ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@middle_name}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@git}"
   end
