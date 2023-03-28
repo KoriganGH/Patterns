@@ -30,7 +30,7 @@ class Student
     self.git = options[:git]
   end
 
-    def last_name=(new_last_name)
+  def last_name=(new_last_name)
     raise ArgumentError, "Invalid argument: last_name=#{new_last_name}" unless Student.valid_name?(new_last_name)
 
     @last_name = new_last_name
