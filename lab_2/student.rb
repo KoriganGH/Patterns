@@ -71,7 +71,19 @@ class Student
 
     @email = new_email
   end
+  
+  def valid_contacts?
+    !phone.nil? || !telegram.nil? || !email.nil?
+  end
 
+  def valid_git?
+    !git.nil?
+  end
+
+  def valid?
+    valid_contacts? && valid_git?
+  end
+  
   def to_s
     "ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@middle_name}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@git}"
   end
