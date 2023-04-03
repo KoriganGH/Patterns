@@ -41,3 +41,8 @@ begin
 rescue JSON::ParserError => e
   puts "test 3: #{e.message}"
 end
+
+puts student3.get_info
+
+short1 = StudentShort.from_student(student3)
+puts short1
