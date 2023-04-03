@@ -56,6 +56,20 @@ def read_from_txt(file_path)
   end
 end
 
-read_from_txt('students.txt').each do |st|
+def write_to_txt(file_path, student_list)
+  res = '['
+  student_list.each do |st|
+
+    res += st.to_json_str + ","
+  end
+  res = res.chop + "]"
+  File.write(file_path, res)
+end
+
+st_list=read_from_txt('students.txt')
+st_list.each do |st|
   puts st.get_info
 end
+
+write_to_txt('students_out.txt',st_list)
+puts read_from_txt('students_out.txt')
