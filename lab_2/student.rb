@@ -2,6 +2,9 @@ require 'json'
 require_relative 'student_super'
 
 class Student < StudentSuper
+
+  public_class_method :new
+
   def self.from_json_str(str)
     params = JSON.parse(str)
     raise ArgumentError, 'Fields required: fist_name, last_name, father_name' unless params.key?('first_name') && params.key?('last_name') && params.key?('father_name')

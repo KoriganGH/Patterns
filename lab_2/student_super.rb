@@ -1,4 +1,7 @@
 class StudentSuper
+
+  private_class_method :new
+
   def self.valid_name?(name)
     name.match(/(^[А-Я][а-я]+$)|(^[A-Z][a-z]+$)/)
   end
@@ -74,15 +77,15 @@ class StudentSuper
 
   public
 
-  def valid_contacts?
+  def has_contacts?
     !phone.nil? || !telegram.nil? || !email.nil?
   end
 
-  def valid_git?
+  def has_git?
     !git.nil?
   end
 
   def valid?
-    valid_contacts? && valid_git?
+    has_contacts? && has_git?
   end
 end

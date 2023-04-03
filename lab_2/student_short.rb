@@ -1,11 +1,14 @@
 class StudentShort < StudentSuper
+
+  public_class_method :new
+
   private
 
   attr_writer :last_name_and_initials, :contact
 
   public
 
-  attr_reader :last_name_and_initials, :contact, :id, :git
+  attr_reader :last_name_and_initials, :contact
 
   def self.from_student(student)
     raise ArgumentError, 'required: ID' if student.id.nil?
