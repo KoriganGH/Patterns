@@ -46,3 +46,16 @@ puts student3.get_info
 
 short1 = StudentShort.from_student(student3)
 puts short1
+
+def read_from_txt(file_path)
+  raise ArgumentError, 'File not found' unless File.exist?(file_path)
+
+  file = File.open(file_path){|file| file.read}
+  JSON.parse(file).inject([]) do |list, student|
+    list << Student.from_json_str(student.to_json)
+  end
+end
+
+read_from_txt('students.txt').each do |st|
+  puts st.get_info
+end
