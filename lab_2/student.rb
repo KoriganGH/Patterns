@@ -111,7 +111,23 @@ class Student
     JSON.generate(attrs)
   end
   
+  def short_contact
+    return "Tg: #{telegram}" unless telegram.nil?
+    return "Email: #{email}" unless email.nil?
+    return "Тел: #{phone}" unless phone.nil?
+
+    nil
+  end
+  
+  def last_name_and_initials
+    "#{last_name} #{first_name[0]}. #{father_name[0]}."
+  end
+
+  def get_info
+    "#{last_name_and_initials}, #{short_contact}, Git: #{git}"
+  end
+  
   def to_s
-    "ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@middle_name}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@git}"
+    "ID: #{@id}, Фамилия: #{@last_name}, Имя: #{@first_name}, Отчество: #{@father_name}, Телефон: #{@phone}, Телеграм: #{@telegram}, Почта: #{@email}, Гит: #{@git}"
   end
 end
