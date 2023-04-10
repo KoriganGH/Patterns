@@ -1,5 +1,6 @@
 require_relative 'student'
 require_relative 'student_short'
+require_relative 'data_table'
 
 student1 = Student.new('Иванов', 'Иван', 'Иванович')
 student2 = Student.new('Петр', 'Петров', 'Петрович', { id: 2, phone: '79990009999', telegram: 'dotnet', email: 'pochta@mail.ru', git: 'foreveralone' })
@@ -74,3 +75,9 @@ end
 
 write_to_txt('students_out.txt',st_list)
 puts read_from_txt('students_out.txt')
+
+
+test_matrix = [[1, 'Ivan', true], [2, 'Alex', false]]
+test_table = DataTable.new(test_matrix)
+puts test_table
+puts test_table.get_item(0, 1)
