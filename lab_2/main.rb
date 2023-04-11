@@ -1,6 +1,7 @@
 require_relative 'student'
 require_relative 'student_short'
 require_relative 'data_table'
+require 'json'
 
 student1 = Student.new('Иванов', 'Иван', 'Иванович')
 student2 = Student.new('Петр', 'Петров', 'Петрович', { id: 2, phone: '79990009999', telegram: 'dotnet', email: 'pochta@mail.ru', git: 'foreveralone' })
@@ -81,3 +82,13 @@ test_matrix = [[1, 'Ivan', true], [2, 'Alex', false]]
 test_table = DataTable.new(test_matrix)
 puts test_table
 puts test_table.get_item(0, 1)
+
+0.upto(short_table.rows_count - 1) do |row|
+  stud_info = {}
+  1.upto(short_table.cols_count - 1) do |col|
+    stud_info[short_list.column_names[col - 1].to_sym] = short_table.get_item(row, col)
+  end
+
+  my_student = StudentShort.new(short_table.get_item(row, 0), JSON.generate(stud_info))
+  puts my_student
+end
