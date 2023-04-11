@@ -1,7 +1,7 @@
 class DataList
   private_class_method :new
   
-attr_writer :objects
+  attr_writer :objects
   
   def initialize(objects)
     self.objects = objects
