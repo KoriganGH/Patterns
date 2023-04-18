@@ -1,10 +1,8 @@
-require_relative 'super_students_list'
+require_relative 'student_list_strategy'
 require 'json'
 
-class StudentsListJSON < SuperStudentsList
+class StudentsListJSON < StudentListStrategy
   public_class_method :new
-
-  protected
 
   def str_to_hash_list(str)
     JSON.parse(str, { symbolize_names: true })

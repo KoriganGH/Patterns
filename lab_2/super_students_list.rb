@@ -1,20 +1,21 @@
 class SuperStudentsList
-  private_class_method :new
+  attr_writer :data_type
 
-  def initialize
+  def initialize(data_type)
     self.students = []
     self.seq_id = 1
+    self.data_type = data_type
   end
 
   def load_from_file(file_path)
-    hash_list = str_to_hash_list(File.read(file_path))
+    hash_list = data_type.str_to_hash_list(File.read(file_path))
     self.students = hash_list.map { |h| Student.from_hash(h) }
     update_seq_id
   end
 
   def save_to_file(file_path)
     hash_list = students.map(&:to_hash)
-    File.write(file_path, hash_list_to_str(hash_list))
+    File.write(file_path, data_type.hash_list_to_str(hash_list))
   end
 
   def student_by_id(student_id)
@@ -53,17 +54,12 @@ class SuperStudentsList
     students.count
   end
 
-  protected
-
-  def str_to_hash_list(str); end
-
-  def hash_list_to_str(hash_list); end
-
   private
 
   def update_seq_id
     self.seq_id = students.max_by(&:id).id + 1
   end
 
+  attr_reader :data_type
   attr_accessor :students, :seq_id
 end

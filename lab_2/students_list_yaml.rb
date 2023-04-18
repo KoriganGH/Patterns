@@ -1,10 +1,8 @@
-require_relative 'super_students_list'
+require_relative 'student_list_strategy'
 require 'yaml'
 
-class StudentsListYAML < SuperStudentsList
+class StudentsListYAML < StudentListStrategy
   public_class_method :new
-
-  protected
 
   def str_to_hash_list(str)
     YAML.safe_load(str).map { |h| h.transform_keys(&:to_sym) }
