@@ -16,7 +16,7 @@ class DataList
   end
 
   def column_names
-    []
+    raise NotImplementedError('Должен быть реализован в дочернем')
   end
 
   def data_table
@@ -35,7 +35,7 @@ class DataList
   protected
 
   def table_fields(_obj)
-    []
+    raise NotImplementedError('Должен быть реализован в дочернем')
   end
 
   private
