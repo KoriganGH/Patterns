@@ -2,6 +2,7 @@ require './GUI/main_window'
 require './repositories/student_repository'
 require './repositories/adapter/db_source_adapter'
 require './repositories/containers/data_list_student_short'
+require './GUI/student_input_form'
 require 'win32api'
 
 class TabStudentsController
@@ -23,6 +24,17 @@ class TabStudentsController
     @view.create.show
   end
 
+  def show_modal_add
+    controller = StudentInputFormControllerCreate.new(self)
+    view = StudentInputForm.new(controller)
+    controller.set_view(view)
+    view.create.show
+  end
+
+  def show_modal_edit(current_page, selected_row)
+
+  end
+
   def refresh_data(page, per_page)
     begin
       @data_list = @student_rep.paginated_short_students(page, per_page, @data_list)
@@ -32,9 +44,10 @@ class TabStudentsController
     end
   end
 
+  private
+
   def on_db_conn_error
     api = Win32API.new('user32', 'MessageBox', ['L', 'P', 'P', 'L'], 'I')
     api.call(0, "No connection to DB", "Error", 0)
     exit(false)
   end
-end
