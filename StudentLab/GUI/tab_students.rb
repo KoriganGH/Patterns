@@ -1,8 +1,19 @@
-class TabStudents
-  include Glimmer::LibUI::CustomControl
+require 'glimmer-dsl-libui'
+require './controller/tab_students_controller'
 
-  body {
-    horizontal_box {
+class TabStudents
+  include Glimmer
+
+  def initialize
+    @controller = TabStudentsController.new(self)
+  end
+
+  def on_create
+    
+  end
+
+  def create
+    root_container = horizontal_box {
       # Секция 1
       vertical_box {
         stretchy false
@@ -70,7 +81,7 @@ class TabStudents
 
       # Секция 3
       vertical_box {
-        stretchy true
+        stretchy false
 
         button('Добавить') { stretchy false }
         button('Изменить') { stretchy false }
@@ -78,5 +89,7 @@ class TabStudents
         button('Обновить') { stretchy false }
       }
     }
-  }
+    on_create
+    root_container
+  end
 end
