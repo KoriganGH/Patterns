@@ -1,11 +1,22 @@
 require './GUI/main_window'
 require './repositories/student_repository'
 require './repositories/adapter/db_source_adapter'
+require './repositories/containers/data_list_student_short'
+require 'win32api'
 
 class TabStudentsController
   def initialize(view)
-    @student_rep = StudentRepository.new(DBSourceAdapter.new)
     @view = view
+    @data_list = DataListStudentShort.new([])
+    @data_list.add_listener(@view)
+  end
+
+  def on_view_created
+    begin
+      @student_rep = StudentRepository.new(DBSourceAdapter.new)
+    rescue Mysql2::Error::ConnectionError
+      on_db_conn_error
+    end
   end
 
   def show_view
@@ -13,6 +24,17 @@ class TabStudentsController
   end
 
   def refresh_data(page, per_page)
-    @data_list = @student_rep.paginated_short_students(page, per_page)
+    begin
+      @data_list = @student_rep.paginated_short_students(page, per_page, @data_list)
+      @view.update_student_count(@student_rep.student_count)
+    rescue
+      on_db_conn_error
+    end
+  end
+
+  def on_db_conn_error
+    api = Win32API.new('user32', 'MessageBox', ['L', 'P', 'P', 'L'], 'I')
+    api.call(0, "No connection to DB", "Error", 0)
+    exit(false)
   end
 end
