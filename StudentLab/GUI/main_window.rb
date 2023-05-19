@@ -6,7 +6,7 @@ class MainWindow
     window('Университет', 600, 200) {
       tab {
         tab_item('Студенты') {
-
+          tab_students
         }
 
         tab_item('Вкладка 2') { }
